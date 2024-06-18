@@ -27,6 +27,7 @@ class UrTube:
 
 
     def log_out(self):     # для сброса текущего пользователя на None
+        print('Извините, Вам не рекомендуется посещение данного канала')
         del self
 
 
@@ -85,5 +86,44 @@ class Video:
 
 
 class User:
-    def __int__(self, nickname, password, age):
-        pass
+    def __int__(self, age, nickname, password, password_confirm):
+        self.nickname = nickname
+        # if age.isdigit:
+        self.age = age
+        print(self.age)
+        if password == password_confirm:
+            self.password = password
+            pass
+
+
+if __name__ == '__main__':
+    database = UrTube()
+
+
+    while True:
+        choice = input('Выберите нужное действие : \n1 - Вход\n2 - Регистрация\n')
+        if choice == '1':
+            log = input('Введите Ваш логин :')
+            pas = input('Введите Ваш пароль :')
+            print(f"Отлично, Ваш логин {log}, Ваш пароль {pas}. Проверяем...")
+            input()
+            # if nickname in database.users:
+            #
+            #     pass
+        if choice == '2':
+            age = input("Сколько Вам лет?  ")
+            while age.isdigit():
+                age = int(age)
+                if age <= 18:
+                    print('Извините, Вам не рекомендуется посещение данного канала')
+                    exit
+                else: print('ok')
+            else: print('Извините, введите, пожалуйста цифрами')
+
+
+
+            nickname = input('Введите Ваш логин :')
+            password = input('Введите Ваш пароль :')
+            password_confirm = input('Повторите пароль :')
+
+
