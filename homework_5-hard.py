@@ -22,9 +22,10 @@ class UrTube:
         self.nickname = nickname
         self.password = password
         self.age = age
-
-
-
+        # self.users = [1]
+        print('self.users :', self.users)
+        print(f'Добавлен юзер с именем  {nickname}')
+        exit()
 
     def log_out(self):     # для сброса текущего пользователя на None
         print('Извините, Вам не рекомендуется посещение данного канала')
@@ -76,54 +77,69 @@ class Video:
 
 
 
-
-
-
-
-
-
-
-
-
 class User:
-    def __int__(self, age, nickname, password, password_confirm):
+    def __init__(self, age, nickname, password, password_confirm = None):
         self.nickname = nickname
-        # if age.isdigit:
         self.age = age
-        print(self.age)
+        print('Добавили возраст юзера :', self.age)
         if password == password_confirm:
             self.password = password
-            pass
+        database.register(nickname, password, age)
+
+
+
+
+
+def enter_():
+    log = input('Введите Ваш логин :')
+    pasw = input('Введите Ваш пароль :')
+    print(f"Отлично, Ваш логин {log}, Ваш пароль {pasw}. Проверяем...")
+    input()
+# if nickname in database.users:
+#
+#     pass
+
+
+
+def register_(age):
+    nickname = input('Введите Ваш логин :')
+    password = hash(input('Введите Ваш пароль :'))
+    password_confirm = hash(input('Повторите пароль :'))
+    user = User(age, nickname, password, password_confirm)
+
+
+def vozrast_digit():
+    while True:
+        age = input("Сколько Вам лет?  ")
+        if age.isdigit():
+            vozrast_(age)
+        else:
+            print('Извините, введите, пожалуйста цифрами')
+
+def vozrast_(age):
+    age = int(age)
+    if age <= 18:
+        print('Извините, Вам не рекомендуется посещение данного канала')
+        exit()
+    else:
+        print('ok')
+        register_(age)
 
 
 if __name__ == '__main__':
     database = UrTube()
 
-
     while True:
         choice = input('Выберите нужное действие : \n1 - Вход\n2 - Регистрация\n')
         if choice == '1':
-            log = input('Введите Ваш логин :')
-            pas = input('Введите Ваш пароль :')
-            print(f"Отлично, Ваш логин {log}, Ваш пароль {pas}. Проверяем...")
-            input()
-            # if nickname in database.users:
-            #
-            #     pass
+            enter_()
+
         if choice == '2':
-            age = input("Сколько Вам лет?  ")
-            while age.isdigit():
-                age = int(age)
-                if age <= 18:
-                    print('Извините, Вам не рекомендуется посещение данного канала')
-                    exit
-                else: print('ok')
-            else: print('Извините, введите, пожалуйста цифрами')
+            vozrast_digit()
 
 
 
-            nickname = input('Введите Ваш логин :')
-            password = input('Введите Ваш пароль :')
-            password_confirm = input('Повторите пароль :')
+
+
 
 
