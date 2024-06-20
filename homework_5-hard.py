@@ -6,10 +6,11 @@ from time import sleep
 
 
 class UrTube:
+    users = []
+    videos = []
+    current_user = 'user'
     def __int__(self):
-        self.users = []
-        self.videos = []
-        self.current_user = 'user'
+       pass
 
 
     def log_in(self, login, password):   # Ищет такого юзера, и если есть, current_user меняет на него
@@ -22,7 +23,7 @@ class UrTube:
         self.nickname = nickname
         self.password = password
         self.age = age
-        # self.users = [1]
+        self.users.append(nickname)
         print('self.users :', self.users)
         print(f'Добавлен юзер с именем  {nickname}')
         exit()
