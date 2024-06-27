@@ -48,16 +48,11 @@ class UrTube:
         self.login = login                     # нужен цикл по распаковке списка и проверке на наличие
         self.password = password                # Здесь по умолчанию подразумевается, что юзер существует в базе
         if len(UrTube.users) > 0:
-            input('stop1')
             for i in range(0, len(UrTube.users)):
-                input('stop2')
                 self.urs = UrTube.users[i]          # по идее это список из трех переменных login, password, age
-                input('stop3')
                 if self.login == self.urs[0]:
                     print(self.urs)
-                    input('stop4')
                     if hash(self.password) == hash(self.urs[1]):
-                        input('stop6')
                         UrTube.current_user = self.urs
                         print(f'Добро пожаловать на наш видеохостинг. Теперь UrTube.current_user = {UrTube.current_user}')
                         input('Ждите')
@@ -87,10 +82,6 @@ class UrTube:
         print('База пользователей "self.users" :', self.users)
         UrTube.current_user = self.usr
         start2()
-
-        pass
-
-
 
     def log_out(self):     # для сброса текущего пользователя на None
         print('До свидания, до новых встреч')
@@ -203,15 +194,16 @@ def register_():
     password_check()
 
 def start2():
-    choice2 = input('Переходим к действиям с видео, Но для начала проверим все функции входа\n '
-                    'Выберите нужное действие : \n1 - Вход\n2 - Регистрация\n')
-    if choice2 == '1':
-        log = input('Введите Ваш логин :')
-        pasw = input('Введите Ваш пароль :')
-        my_canal.log_in(log, pasw)
-
-    if choice2 == '2':
-        register_()
+    choice2 = input('Переходим к действиям с видео, ')
+    #                 'Но для начала проверим все функции входа\n '
+    #                 'Выберите нужное действие : \n1 - Вход\n2 - Регистрация\n')
+    # if choice2 == '1':
+    #     log = input('Введите Ваш логин :')
+    #     pasw = input('Введите Ваш пароль :')
+    #     my_canal.log_in(log, pasw)
+    #
+    # if choice2 == '2':
+    #     register_()
 
     pass
 
