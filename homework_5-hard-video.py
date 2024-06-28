@@ -1,3 +1,4 @@
+
 from time import sleep
 
 """ Общее ТЗ:
@@ -9,17 +10,37 @@ class UrTube:
     videos = []
     current_user = []
     def __init__(self):
-       pass
-
+        pass
 
     def add(self, *video):
         """ принимает неограниченное кол-во объектов класса Video и все добавляет в videos,
             если с таким же названием видео ещё не существует. В противном случае ничего не происходит. """
-        UrTube.videos.append(*video)
+        print('В add передано', video)
+        input('stop2')
+
+
+
+
+
+
+
+
+        # if not any(v.title == i.tittle for v in self.videos:
+        #     self.videos.append(i)
+        # # self.flm = video
+
+        # if len(UrTube.videos) > 0:
+        #     for i in range(0, len(UrTube.videos)):
+        #         self.flm = UrTube.videos[i]
+        #         if self.title == self.flm[0]:
+        #             input('Есть фильм, что дальше?')
+        #         else:
+        #             UrTube.videos.append(self.flm)
+
+
         print(UrTube.videos)
         input('pause1')
-        self.film = [self.title, self.duration, self.time_now, self.adult_mode ]
-        # if self.usr in UrTube.users:
+        # self.film = [self.title, self.duration, self.time_now, self.adult_mode ]
         pass
 
 
@@ -43,19 +64,17 @@ class UrTube:
 
 
 class Video:
-    def __init__(self, title, duration, *args):
+    def __init__(self, title, duration, adult_mode = False):
         self.title = title                                # заголовок, строка
-        self.duration = duration                            # продолжительность, секунды
+        self.duration = duration                           # продолжительность, секунды
         self.time_now = 0                            # секунда остановки, изначально 0
-        self.adult_mode = False
+        self.adult_mode = adult_mode
+        self.v = [self.title, self.duration, self.time_now, self.adult_mode]
         print(f'Создали фильм c названием {self.title}, длительность которого  {self.duration}')
-        print(self)
-        my_canal.add(self.title)
-        pass
+        print(f'Объект класса Video: {self.v}')
+        UrTube.add(title, duration, adult_mode)
 
-
-v1 = Video(title ='Лучший язык программирования 2024 года', duration = 200)
-v2 = Video(title ='Для чего девушкам парень программист?', duration = 10, adult_mode=True)
+v = Video('Лучший язык программирования 2024 года', 200)
 
 if __name__ == '__main__':
     my_canal = UrTube()
