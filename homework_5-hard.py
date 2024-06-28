@@ -1,21 +1,8 @@
-import io
-import os
-import sys
-import warnings
-import termcolor
-import pip
-from typing import Any, Iterable
 from time import sleep
-# pip install termcolor
-from termcolor import colored, cprint
-
-
-
 
 """ Общее ТЗ:
 Реализовать классы для взаимодействия с платформой, каждый из которых будет содержать методы добавления видео, 
 авторизации и регистрации пользователя и т.д."""
-
 
 class UrTube:
     """
