@@ -43,7 +43,6 @@ class UrTube:
     def __init__(self):
        pass
 
-
     def log_in(self, login, password):       # Ищет такого юзера, и если есть, current_user меняет на него,
         self.login = login                     # нужен цикл по распаковке списка и проверке на наличие
         self.password = password                # Здесь по умолчанию подразумевается, что юзер существует в базе
@@ -54,9 +53,8 @@ class UrTube:
                     print(self.urs)
                     if hash(self.password) == hash(self.urs[1]):
                         UrTube.current_user = self.urs
-                        print(f'Добро пожаловать на наш видеохостинг. Теперь UrTube.current_user = {UrTube.current_user}')
-                        input('Ждите')
-                        start2()
+                        print(f'Добро пожаловать. Теперь UrTube.current_user = {UrTube.current_user}')
+                        start()
                     else:
                         print('Пароль не верен. Попробуйте еще раз')
                         start()
@@ -71,7 +69,6 @@ class UrTube:
         self.nickname = nickname
         self.password = password
         self.age = age
-        input(' ddd')
         self.usr = [self.nickname, self.password, self.age]
         if self.usr in UrTube.users:
             print(f'Пользователь {self.nickname} уже существует')
@@ -81,7 +78,7 @@ class UrTube:
             UrTube.users.append(self.usr)
         print('База пользователей "self.users" :', self.users)
         UrTube.current_user = self.usr
-        start2()
+        start()
 
     def log_out(self):     # для сброса текущего пользователя на None
         print('До свидания, до новых встреч')
@@ -94,19 +91,34 @@ class UrTube:
     def add(self, *video):
         """ принимает неограниченное кол-во объектов класса Video и все добавляет в videos,
             если с таким же названием видео ещё не существует. В противном случае ничего не происходит. """
-        self.videos('video')
-        pass
+        self.video = list(video)
+        # print(self.video)
+        for v in self.video:
+            tit = v.title
+            if not v in self.videos:
+                self.videos.append(v.title)
+                print(UrTube.videos)
+            else:
+                self.videos = self.videos
+        start()
 
 
-    def get_videos(self):
+    def get_videos(self, word_):
         """ принимает поисковое слово и возвращает список названий всех видео, содержащих поисковое слово.
                Следует учесть, что слово 'UrbaN' присутствует в строке 'Urban the best' (не учитывать регистр)."""
-        pass
+        res = []
+        for i in self.videos:
+            self.word_ = word_
+            if self.word_.lower() in i.lower():
+                vibor = [i]
+                res += vibor
+        print(res)
+        # start()
 
 
 
 
-    def watch_video(self):
+    def watch_video(self, title):
         """принимает название фильма, если не находит точного совпадения(вплоть до пробела), то ничего не воспроизводится,
             если же находит - ведётся отчёт в консоль на какой секунде ведётся просмотр.
             После текущее время просмотра данного видео сбрасывается."""
@@ -116,17 +128,21 @@ class UrTube:
                 Если видео найдено, следует учесть, что пользователю может быть отказано в просмотре, т.к. есть ограничения 18+.
                 Должно выводиться сообщение: "Вам нет 18 лет, пожалуйста покиньте страницу"
                 После воспроизведения нужно выводить: "Конец видео"""
+        input('watch_video')
         pass
 
 
 class Video:
-    def __int__(self, *args):
-        self.title = 'title'                                # заголовок, строка
-        self.duration = 'duration'                            # продолжительность, секунды
-        self.time_now = 0                            # секунда остановки, изначально 0
-        self.adult_mode = False
-        pass
+    def __init__(self, title, duration, adult_mode=False):
+        self.title = title                                                  # заголовок, строка
+        self.duration = duration                                            # продолжительность, секунды
+        self.time_now = 0                                                   # секунда остановки, изначально 0
+        self.adult_mode = adult_mode
+        self.v = [self.title, self.duration, self.time_now, self.adult_mode]
 
+
+v1 = Video('Лучший язык программирования 2024 года', 200)
+v2 = Video('Для чего девушкам парень программист?', 10, adult_mode=True)
 
 class User:
     def __init__(self, nickname, password, age):
@@ -134,13 +150,8 @@ class User:
         self.password = password
         self.age = age
         print(f'Создали юзера c именем {self.nickname}, у которого пароль {self.password}, ему {self.age} лет')
-        my_canal.register(nickname, password, age)
+        ur.register(nickname, password, age)
 
-def enter_():
-    log = input('Введите Ваш логин :')
-    pasw = input('Введите Ваш пароль :')
-    my_canal.log_in(log, pasw)
-    input("Ждем.......")
 
 def register_():
     nickname = input('Введите Ваш логин :')
@@ -183,7 +194,6 @@ def register_():
             password = pass_word
             password_confirm = input('повторите пароль ')
             if hash(password) == hash(password_confirm):
-                # password = hash(password)
                 user = User(nickname, password, age)
             else:
                 print('пароли не совпадают, попробуйте еще раз')
@@ -210,18 +220,35 @@ def start2():
 
 
 if __name__ == '__main__':
-    my_canal = UrTube()
+    ur = UrTube()
 
     def start():
-        choice = input('Выберите нужное действие : \n1 - Вход\n2 - Регистрация\n')
+        choice = input('Выберите нужное действие : \n1 - Вход\n2 - Регистрация\n3 - Загрузка видео\n'
+                       '4 - Поиск видео\n5 - Просмотр фильма')
 
         if choice == '1':
             login = input('Введите Ваш логин :')
             password = input('Введите Ваш пароль :')
-            my_canal.log_in(login, password)
+            ur.log_in(login, password)
 
         if choice == '2':
             register_()
+
+        if choice == '3':
+            v1 = Video('Лучший язык программирования 2024 года', 200)
+            v2 = Video('Для чего девушкам парень программист?', 10, adult_mode=True)
+            ur.add(v1, v2)
+
+        if choice == '4':
+            print(ur.get_videos('лучший'))
+            print(ur.get_videos('ПРОГ'))
+            print(ur.get_videos('ДЕвуШКА'))
+            # ur.watch_video()
+            start()
+
+        if choice == '5':
+            pass
+        
     start()
 
 
