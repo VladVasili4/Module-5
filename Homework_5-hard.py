@@ -78,13 +78,10 @@ class UrTube:
             если с таким же названием видео ещё не существует. В противном случае ничего не происходит. """
         self.video = list(video)
         print('self.video :', self.video)
-        for v in self.video:
-            # tit = v.title
+        for v in self.video:            
             if not v in self.videos:
                 self.videos.append(v.title)
-                print(UrTube.videos)
-            # else:
-            #     self.videos = self.videos
+                print(UrTube.videos)           
         start()
 
     def get_videos(self, word_):
@@ -97,7 +94,7 @@ class UrTube:
                 vibor = [i]
                 res += vibor
         print(res)
-        # start()
+        start()
 
     def watch_video(self, title):
         """принимает название фильма, если не находит точного совпадения(вплоть до пробела), то ничего не воспроизводится,
@@ -116,11 +113,9 @@ class UrTube:
                     vid = self.video[i]
                     if title == vid.title:
                         if self.age > 17 or (self.age < 17 and not vid.adult_mode):
-                            for i in range(0, vid.duration):
-                                # print(i)
+                            for i in range(0, vid.duration):                                
                                 sleep(1)
-                                vid.time_now = i
-                            # input('watch_video')
+                                vid.time_now = i                            
                             print('Конец видео')
                             exit()
                         else:
